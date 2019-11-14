@@ -10,12 +10,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MainCanvas can = new MainCanvas(this);
         can.findViewById(R.id.mainCanvas);
     }
 
     @Override
     protected void onDestroy() {
-        can.isDone = true;
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        can.isDone = true;
+        finish();
+        super.onBackPressed();
     }
 }

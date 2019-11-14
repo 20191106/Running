@@ -1,5 +1,7 @@
 package com.example.running;
 
+import android.util.Log;
+
 public class DrawbleObject {
     int posX;
     int posY;
