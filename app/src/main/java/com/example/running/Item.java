@@ -13,6 +13,7 @@ public class Item extends DrawbleObject {
         switch (type){
             case 1:
                 if(rabbit.life < 5) rabbit.life++;
+                else rabbit.gold += 500;
                 break;
             case 2:
                 rabbit.gold += 100;

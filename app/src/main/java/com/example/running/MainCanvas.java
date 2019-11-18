@@ -32,8 +32,7 @@ public class MainCanvas extends View {
     Bitmap rabbitBm, rabbitJumpBm, rabbitRunBm;
     Bitmap lifeOnBm, lifeOffBm, goldBm;
     Bitmap mapBm;
-
-    TextView scoreTv;
+    Bitmap jumpButtonBm, hurdleBm;
 
     public MainCanvas(Context context) {
         super(context);
@@ -58,8 +57,12 @@ public class MainCanvas extends View {
 
         goldBm = BitmapFactory.decodeResource(getResources(), R.drawable.gold);
 
+        hurdleBm = BitmapFactory.decodeResource(getResources(), R.drawable.hurdle);
+
         // ui
-        jumpButton = new DrawbleObject(50, Map.GROUND - 150, 150, 150);
+        jumpButton = new DrawbleObject(70, Map.GROUND, 150, 150);
+        jumpButtonBm = BitmapFactory.decodeResource(getResources(), R.drawable.jumpbutton);
+        jumpButtonBm = Bitmap.createScaledBitmap(jumpButtonBm, (int)jumpButton.width, (int)jumpButton.height, true);
         jumpButtonRect = new Rect((int)jumpButton.posX, (int)jumpButton.posY,
                 (int)jumpButton.posX + (int)jumpButton.width, (int)jumpButton.posY + (int)jumpButton.height);
 
@@ -70,8 +73,6 @@ public class MainCanvas extends View {
         lifeOnBm = Bitmap.createScaledBitmap(lifeOnBm, (int)lifeSpace[0].width, (int)lifeSpace[0].height, true);
         lifeOffBm = BitmapFactory.decodeResource(getResources(), R.drawable.lifeoff);
         lifeOffBm = Bitmap.createScaledBitmap(lifeOffBm, (int)lifeSpace[0].width, (int)lifeSpace[0].height, true);
-
-        scoreTv = findViewById(R.id.main_scoreTv);
 
 
         //init
@@ -88,9 +89,11 @@ public class MainCanvas extends View {
         // object
         canvas.drawBitmap(mapBm, (int)map.posX, (int)map.posY, p);
 
-        for (int i = 0; i < map.hurdles.size(); i++){
-            canvas.drawRect((int)map.hurdles.get(i).posX, (int)map.hurdles.get(i).posY,
-                    (int)map.hurdles.get(i).posX + (int)map.hurdles.get(i).width, (int)map.hurdles.get(i).posY + (int)map.hurdles.get(i).height, p);
+        synchronized (map.hurdles){
+            for (int i = 0; i < map.hurdles.size(); i++){
+                hurdleBm = Bitmap.createScaledBitmap(hurdleBm, (int)map.hurdles.get(i).width, (int)map.hurdles.get(i).height, true);
+                canvas.drawBitmap(hurdleBm, (int)map.hurdles.get(i).posX, (int)map.hurdles.get(i).posY, p);
+            }
         }
 
         for (int i = 0; i < map.items.size(); i++){
@@ -119,7 +122,7 @@ public class MainCanvas extends View {
 
         // ui
         p.setColor(Color.GRAY);
-        canvas.drawRect(jumpButtonRect, p);
+        canvas.drawBitmap(jumpButtonBm, (int)jumpButton.posX, (int)jumpButton.posY, p);
 
         for (int i = 0; i < rabbit.life; i++){
             canvas.drawBitmap(lifeOnBm, (int)lifeSpace[i].posX, (int)lifeSpace[i].posY, p);
@@ -127,6 +130,10 @@ public class MainCanvas extends View {
         for (int i = rabbit.life; i < 5; i++){
             canvas.drawBitmap(lifeOffBm, (int)lifeSpace[i].posX, (int)lifeSpace[i].posY, p);
         }
+
+        p.setTextSize(100);
+        p.setColor(Color.BLACK);
+        canvas.drawText("SCORE : " + rabbit.gold, 1300, 100, p);
     }
 
     @Override
@@ -154,9 +161,6 @@ public class MainCanvas extends View {
                 map.checkCrash(rabbit);
                 isDone = map.checkEnd(rabbit);
                 map.checkGetItem(rabbit);
-                //scoreTv.setText("SCORE : " + rabbit.gold);
-                //TODO
-                //1.settext 2.가로고정
 
                 try {
                     Thread.sleep(15);

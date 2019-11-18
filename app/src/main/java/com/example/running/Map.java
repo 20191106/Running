@@ -20,17 +20,17 @@ public class Map extends DrawbleObject {
     }
 
     public void makeHurdle(int h, int width){
-        hurdles.add(new Hurdle(1920, GROUND - h, width, h, speed));
+        hurdles.add(new Hurdle(2100, GROUND - h + 50, width, h, speed));
     }
 
     public void makeItem(int h, int type){
-        items.add(new Item(1920, GROUND - h, 150, 150, speed, type));
+        items.add(new Item(2100, GROUND - h, 150, 150, speed, type));
     }
 
-    public void moving(){
+    synchronized public void moving(){
         for (int i = 0; i < hurdles.size(); i++){
             hurdles.get(i).moving();
-            if (hurdles.get(i).posX < -hurdles.get(i).width - 150){
+            if (hurdles.get(i).posX < 0 - 170){
                 hurdles.remove(i);
                 i--;
             }
@@ -70,7 +70,7 @@ public class Map extends DrawbleObject {
     }
 
     // when get item
-    public MyObject checkGetItem(MyObject o1){
+    synchronized public MyObject checkGetItem(MyObject o1){
         for (int i = 0; i < items.size(); i++){
             Item o2 = items.get(i);
             Rect r1 = new Rect((int)o1.posX, (int)o1.posY,
@@ -94,6 +94,17 @@ public class Map extends DrawbleObject {
         return isEnd;
     }
 
+    public void changeSpeed(double speed){
+        this.speed = speed;
+        velX = speed;
+        for (int i = 0; i < hurdles.size(); i++){
+            hurdles.get(i).velX = speed;
+        }
+        for (int i = 0; i < items.size(); i++){
+            items.get(i).velX = speed;
+        }
+    }
+
     public void timeLine(int time){
         Random rand = new Random();
 
@@ -105,6 +116,10 @@ public class Map extends DrawbleObject {
         }
         else if (time % 50 == 0){
             makeItem(rand.nextInt(500) + 150, 2);
+        }
+
+        if (time % 300 == 0) {
+            changeSpeed(speed - 2);
         }
     }
 }
