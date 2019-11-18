@@ -6,39 +6,47 @@ import java.util.ArrayList;
 
 public class MyObject extends DrawbleObject{
     int life;
-    ArrayList<Item> item = new ArrayList<>();
+    int gold;
 
     int state, k;
+    int jumpStack;
     final int NORMAL = 0;
     final int RUN = 1;
     final int JUMP = 2;
 
-    public MyObject(int posX, int posY, int width, int height) {
+    public MyObject(double posX, double posY, double width, double height) {
         super(posX, posY, width, height);
         life = 5;
+        gold = 0;
         state = 0;
         k = 0;
+        jumpStack = 2;
     }
 
     public void jumping(){
-        if (posY == Map.GROUND - height){
-            velY = -30;
-            accY = 1;
+        if (jumpStack > 0){
+            velY = -40;
+            accY = 1.4;
             state = JUMP;
+            jumpStack--;
         }
     }
 
     public void moving(){
+
+        // when landing on ground
         if (state == JUMP) {
             if (posY > Map.GROUND - height){
                 velY = 0;
                 accY = 0;
                 k = 0;
                 posY = Map.GROUND - height;
+                jumpStack = 2;
                 state = NORMAL;
             }
         }
 
+        // when running
         if (state == NORMAL){
             if(k > 15){
                 state = RUN;
@@ -54,16 +62,5 @@ public class MyObject extends DrawbleObject{
         }
 
         super.moving();
-    }
-
-    public void usingItem(int idx){
-        if (item.size() > idx){
-            switch (item.get(idx).type){
-                case 0:
-                    break;
-            }
-
-            item.remove(idx);
-        }
     }
 }

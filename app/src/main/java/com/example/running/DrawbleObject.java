@@ -3,16 +3,16 @@ package com.example.running;
 import android.util.Log;
 
 public class DrawbleObject {
-    int posX;
-    int posY;
-    int width;
-    int height;
-    int velX;
-    int velY;
-    int accX;
-    int accY;
+    double posX;
+    double posY;
+    double width;
+    double height;
+    double velX;
+    double velY;
+    double accX;
+    double accY;
 
-    public DrawbleObject(int posX, int posY, int width, int height) {
+    public DrawbleObject(double posX, double posY, double width, double height) {
         this.posX = posX;
         this.posY = posY;
         this.width = width;
