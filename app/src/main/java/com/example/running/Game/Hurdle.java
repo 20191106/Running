@@ -1,7 +1,7 @@
-package com.example.running;
+package com.example.running.Game;
 
 public class Hurdle extends DrawbleObject {
-    boolean isCrashed;
+    public boolean isCrashed;
 
     public Hurdle(double posX, double posY, double width, double height, double speed) {
         super(posX, posY, width, height);

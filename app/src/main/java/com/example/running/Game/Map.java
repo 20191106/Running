@@ -1,18 +1,17 @@
-package com.example.running;
+package com.example.running.Game;
 
 import android.graphics.Rect;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Map extends DrawbleObject {
-    double speed = -12;
+    public double speed = -12;
 
-    ArrayList<Hurdle> hurdles = new ArrayList<>();
-    ArrayList<Item> items = new ArrayList<>();
+    public ArrayList<Hurdle> hurdles = new ArrayList<>();
+    public ArrayList<Item> items = new ArrayList<>();
 
-    final static int GROUND = 850;
+    public final static int GROUND = 850;
 
     public Map(double posX, double posY, double width, double height) {
         super(posX, posY, width, height);

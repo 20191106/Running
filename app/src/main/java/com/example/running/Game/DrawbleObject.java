@@ -1,16 +1,16 @@
-package com.example.running;
+package com.example.running.Game;
 
 import android.util.Log;
 
 public class DrawbleObject {
-    double posX;
-    double posY;
-    double width;
-    double height;
-    double velX;
-    double velY;
-    double accX;
-    double accY;
+    public double posX;
+    public double posY;
+    public double width;
+    public double height;
+    public double velX;
+    public double velY;
+    public double accX;
+    public double accY;
 
     public DrawbleObject(double posX, double posY, double width, double height) {
         this.posX = posX;

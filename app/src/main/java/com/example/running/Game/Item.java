@@ -1,7 +1,7 @@
-package com.example.running;
+package com.example.running.Game;
 
 public class Item extends DrawbleObject {
-    int type;
+    public int type;
 
     public Item(double posX, double posY, double width, double height, double speed, int type) {
         super(posX, posY, width, height);

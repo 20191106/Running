@@ -1,18 +1,14 @@
-package com.example.running;
-
-import android.util.Log;
-
-import java.util.ArrayList;
+package com.example.running.Game;
 
 public class MyObject extends DrawbleObject{
-    int life;
-    int gold;
+    public int life;
+    public int gold;
 
-    int state, k;
-    int jumpStack;
-    final int NORMAL = 0;
-    final int RUN = 1;
-    final int JUMP = 2;
+    public int state, k;
+    public int jumpStack;
+    public final int NORMAL = 0;
+    public final int RUN = 1;
+    public final int JUMP = 2;
 
     public MyObject(double posX, double posY, double width, double height) {
         super(posX, posY, width, height);

@@ -10,15 +10,15 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
+import com.example.running.Game.DrawbleObject;
+import com.example.running.Game.Map;
+import com.example.running.Game.MyObject;
 
 public class MainCanvas extends View {
     boolean isDone = false;

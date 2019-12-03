@@ -1,14 +1,15 @@
 package com.example.running;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    MainCanvas can;
+    FragGame fragGame = new FragGame();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +17,19 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         hideNavigationBar();
         setContentView(R.layout.activity_main);
-        can = new MainCanvas(this);
-        can.findViewById(R.id.mainCanvas);
+
+        popGame();
+    }
+
+    public void popGame() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.mainLayout, fragGame);
+        ft.commit();
     }
 
     @Override
     public void onBackPressed() {
-        can.isDone = true;
-        finish();
         super.onBackPressed();
     }
 
