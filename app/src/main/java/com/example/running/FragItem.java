@@ -8,17 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class FragGame extends BaseFragment {
-    MainCanvas can;
-
+public class FragItem extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.frag_game, container, false);
+        View v = inflater.inflate(R.layout.frag_main, container, false);
         final MainActivity m = (MainActivity)getActivity();
-
-        can = new MainCanvas(m);
-        can = v.findViewById(R.id.mainCanvas);
 
         return v;
     }

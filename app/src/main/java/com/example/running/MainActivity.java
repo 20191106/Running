@@ -10,6 +10,8 @@ import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
     FragGame fragGame = new FragGame();
+    FragLogin fragLogin = new FragLogin();
+    FragMain fragMain = new FragMain();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,13 +20,27 @@ public class MainActivity extends AppCompatActivity {
         hideNavigationBar();
         setContentView(R.layout.activity_main);
 
-        popGame();
+        popMain();
     }
 
     public void popGame() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.mainLayout, fragGame);
+        ft.commit();
+    }
+
+    public void popLogin() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.mainLayout, fragLogin);
+        ft.commit();
+    }
+
+    public void popMain() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.mainLayout, fragMain);
         ft.commit();
     }
 
