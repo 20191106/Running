@@ -49,8 +49,8 @@ public class FragLogin extends BaseFragment {
         pwdEt = v.findViewById(R.id.login_pwdEt);
         signInBtn = v.findViewById(R.id.login_signInBtn);
         signUpBtn = v.findViewById(R.id.login_signUpBtn);
-        Glide.with(m).load(R.drawable.jumpbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(signInBtn);
-        Glide.with(m).load(R.drawable.jumpbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(signUpBtn);
+        Glide.with(m).load(R.drawable.loginbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(signInBtn);
+        Glide.with(m).load(R.drawable.signupbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(signUpBtn);
 
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override

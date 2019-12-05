@@ -4,8 +4,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/back">
 
+    <TextView
+        android:id="@+id/store_gold"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="123123"
+        android:textSize="25dp"
+        android:textColor="#000000"
+        android:gravity="center"/>
     <ImageView
-        android:id="@+id/item_storeBtn"
+        android:id="@+id/store_itemBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="20dp"
@@ -15,7 +24,7 @@
         android:layout_height="300dp"
         android:layout_centerInParent="true">
         <LinearLayout
-            android:id="@+id/item_tapLayout"
+            android:id="@+id/store_tapLayout"
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <RelativeLayout
@@ -23,50 +32,32 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
                 <ImageView
-                    android:id="@+id/item_head"
+                    android:id="@+id/store_head"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-                <ImageView
-                    android:id="@+id/item_myHead"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
                 <ImageView
-                    android:id="@+id/item_body"
+                    android:id="@+id/store_body"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-                <ImageView
-                    android:id="@+id/item_myBody"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
                 <ImageView
-                    android:id="@+id/item_weapon"
+                    android:id="@+id/store_weapon"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-                <ImageView
-                    android:id="@+id/item_myWeapon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"/>
             </RelativeLayout>
         </LinearLayout>
         <ListView
-            android:id="@+id/item_listView"
-            android:layout_below="@id/item_tapLayout"
+            android:id="@+id/store_listView"
+            android:layout_below="@id/store_tapLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </RelativeLayout>

@@ -56,11 +56,11 @@ public class FragMain extends BaseFragment {
         rankBtn = v.findViewById(R.id.main_rankBtn);
         itemBtn = v.findViewById(R.id.main_itemBtn);
         storeBtn = v.findViewById(R.id.main_storeBtn);
-        Glide.with(m).load(R.drawable.jumpbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(settingBtn);
-        Glide.with(m).load(R.drawable.jumpbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(startBtn);
-        Glide.with(m).load(R.drawable.jumpbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(rankBtn);
-        Glide.with(m).load(R.drawable.jumpbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(itemBtn);
-        Glide.with(m).load(R.drawable.jumpbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(storeBtn);
+        Glide.with(m).load(R.drawable.settingbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(settingBtn);
+        Glide.with(m).load(R.drawable.startbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(startBtn);
+        Glide.with(m).load(R.drawable.rankbutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(rankBtn);
+        Glide.with(m).load(R.drawable.itembutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(itemBtn);
+        Glide.with(m).load(R.drawable.storebutton).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).into(storeBtn);
 
         settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override

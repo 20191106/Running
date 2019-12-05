@@ -8,6 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
+//<Login>
+//보안
+//        동시로그인
+//<Main>
+//myInfo 불러오기
+//        세팅팝업
+//<Item <-> Store>
+//        view 구현 (1)
+//        파츠별 이미지
+//<Game>
+//공격, 비행 기능 (2)
+//<전체>
+//UI재조정
+
 public class MainActivity extends AppCompatActivity {
     FragGame fragGame = new FragGame();
     FragLogin fragLogin = new FragLogin();
