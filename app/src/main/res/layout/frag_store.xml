@@ -55,8 +55,8 @@
                     android:layout_height="match_parent"/>
             </RelativeLayout>
         </LinearLayout>
-        <ListView
-            android:id="@+id/store_listView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/store_recyclerView"
             android:layout_below="@id/store_tapLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

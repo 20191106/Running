@@ -1,5 +1,6 @@
 package com.example.running;
 
+import android.content.Context;
 import android.media.Image;
 import android.opengl.ETC1;
 import android.os.Bundle;
@@ -25,10 +26,13 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.running.Model.MyInfo;
+import com.example.running.Model.MyItem;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +42,9 @@ public class FragLogin extends BaseFragment {
     ImageView signInBtn;
     ImageView signUpBtn;
     MyInfo myInfo;
+    ArrayList<MyItem> heads = new ArrayList<>();
+    ArrayList<MyItem> bodies = new ArrayList<>();
+    ArrayList<MyItem> weapons = new ArrayList<>();
 
     @Nullable
     @Override
@@ -58,7 +65,7 @@ public class FragLogin extends BaseFragment {
                 String id = idEt.getText().toString().trim();
                 String pwd = pwdEt.getText().toString().trim();
                 RequestQueue stringRequest = Volley.newRequestQueue(m);
-                String temp = "http://jeho.dothome.co.kr/myDir/running/sign_in.php?id=" + id + "&pwd=" + pwd;
+                String temp = "http://jeho.dothome.co.kr/myDir/running/sign_in_item.php?id=" + id + "&pwd=" + pwd;
                 StringRequest myReq = new StringRequest(Request.Method.GET,
                         temp,
                         new Response.Listener<String>() {
@@ -69,7 +76,24 @@ public class FragLogin extends BaseFragment {
                                     String result = data.getString("result");
                                     if(result.equals("OK")){
                                         JSONObject temp = data.getJSONObject("data");
-                                        //TODO myInfo = new MyInfo();
+                                        JSONArray item_list = data.getJSONArray("item_list");
+                                        for (int i = 0; i < item_list.length(); i++) {
+                                            JSONObject item_temp = item_list.getJSONObject(i);
+                                            int parts = item_temp.getInt("parts");
+                                            if(parts == 0){
+                                                heads.add(new MyItem((parts * 100) + item_temp.getInt("type")));
+                                            }
+                                            else if(parts == 1){
+                                                bodies.add(new MyItem((parts * 100) + item_temp.getInt("type")));
+                                            }
+                                            else if(parts == 2){
+                                                weapons.add(new MyItem((parts * 100) + item_temp.getInt("type")));
+                                            }
+                                        }
+                                        myInfo = new MyInfo(temp.getString("name"),
+                                                temp.getInt("gold"),
+                                                temp.getInt("topscore"),
+                                                heads, bodies, weapons);
                                         m.popMain();
                                     }
                                     else if (result.equals("ID FAIL")){

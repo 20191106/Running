@@ -83,13 +83,13 @@ public class FragMain extends BaseFragment {
         itemBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                m.popItem();
             }
         });
         storeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                m.popStore();
             }
         });
 

@@ -26,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
     FragGame fragGame = new FragGame();
     FragLogin fragLogin = new FragLogin();
     FragMain fragMain = new FragMain();
+    FragItem fragItem = new FragItem();
+    FragStore fragStore = new FragStore();
+
+    int curScr = 0;
+    final int FRAG_LOGIN = 0;
+    final int FRAG_MAIN = 1;
+    final int FRAG_GAME = 2;
+    final int FRAG_ITEM = 3;
+    final int FRAG_STORE = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
         hideNavigationBar();
         setContentView(R.layout.activity_main);
 
-        popMain();
+        popLogin();
     }
 
     public void popGame() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        curScr = FRAG_GAME;
         ft.replace(R.id.mainLayout, fragGame);
         ft.commit();
     }
@@ -47,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public void popLogin() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        curScr = FRAG_LOGIN;
         ft.replace(R.id.mainLayout, fragLogin);
         ft.commit();
     }
@@ -54,13 +65,40 @@ public class MainActivity extends AppCompatActivity {
     public void popMain() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        curScr = FRAG_MAIN;
         ft.replace(R.id.mainLayout, fragMain);
+        ft.commit();
+    }
+
+    public void popItem() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        curScr = FRAG_ITEM;
+        ft.replace(R.id.mainLayout, fragItem);
+        ft.commit();
+    }
+
+    public void popStore() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        curScr = FRAG_STORE;
+        ft.replace(R.id.mainLayout, fragStore);
         ft.commit();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        switch (curScr){
+            case FRAG_LOGIN:
+            case FRAG_MAIN:
+                finish();
+                break;
+            case FRAG_GAME:
+            case FRAG_STORE:
+            case FRAG_ITEM:
+                popMain();
+                break;
+        }
     }
 
     private void hideNavigationBar() {
